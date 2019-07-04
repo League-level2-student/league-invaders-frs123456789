@@ -10,6 +10,11 @@ public class GamePanel extends JPanel {
     final int END = 2;
     Font titleFont;
     int currentState = MENU;
+
+    GamePanel(){
+        titleFont = new Font("Arial", Font.PLAIN, 48);
+    }
+    
 	@Override
 	public void paintComponent(Graphics g){
 		if(currentState == MENU){
@@ -32,6 +37,9 @@ public class GamePanel extends JPanel {
 	void drawMenuState(Graphics g) { 
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		g.setFont(titleFont);
+		g.setColor(Color.YELLOW);
+		g.drawString("text", 200,400);
 	}
 	void drawGameState(Graphics g) {  
 		g.setColor(Color.BLACK);
