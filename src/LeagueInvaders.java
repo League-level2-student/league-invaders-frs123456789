@@ -13,6 +13,7 @@ public LeagueInvaders() {
 	jf.setVisible(true);
 	jf.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	jf.pack();
+	jf.addKeyListener(gp);
 	
 }
 void setup() {
