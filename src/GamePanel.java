@@ -9,9 +9,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel 
-implements ActionListener, KeyListener
-{
+public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
@@ -19,7 +17,7 @@ implements ActionListener, KeyListener
 	Font instuctionFont;
 	int currentState = MENU;
 	Timer frameDraw;
-	Rocketship rs = new Rocketship(250,700,50,50);
+	Rocketship rs = new Rocketship(250, 700, 50, 50);
 
 	GamePanel() {
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -87,7 +85,7 @@ implements ActionListener, KeyListener
 			updateGameState();
 		} else if (currentState == END) {
 			updateEndState();
-			
+
 		}
 		repaint();
 	}
@@ -95,38 +93,49 @@ implements ActionListener, KeyListener
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-		    if (currentState == END) {
-		        currentState = MENU;
-		    } else {
-		        currentState++;
-		    }
-		}   
-		if (e.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == END) {
+				currentState = MENU;
+			} else {
+				currentState++;
+			}
 		}
-		else if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("DOWN");
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			System.out.println("UP");
+			if(rs.y > 0) {
+				rs.y = rs.y-10;
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			System.out.println("DOWN");
+			if(rs.y < 730) {
+				rs.y = rs.y+10;
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("LEFT");
+			
+			if(rs.x > 0) {
+				rs.x = rs.x-10;
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("RIGHT");
+			
+			if(rs.x < 450) {
+				rs.x = rs.x+10;
+			}
 		}
-		else if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("LEFT");
-		}
-		else if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("RIGHT");
-		}
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
