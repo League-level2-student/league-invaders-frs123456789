@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int currentState = MENU;
 	Timer frameDraw;
 	Rocketship rs = new Rocketship(250, 700, 50, 50);
+	Timer alienSpawn;
 
 	GamePanel() {
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -130,6 +131,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 
+	}
+	void startGame(){
+		alienSpawn = new Timer(1000 , objectManager);
+	    alienSpawn.start();
 	}
 
 	@Override
