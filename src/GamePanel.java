@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -20,6 +22,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Rocketship rs = new Rocketship(250, 700, 50, 50);
 	Timer alienSpawn;
 	ObjectManager om = new ObjectManager(rs);
+	public static BufferedImage image;
+	public static boolean needImage = true;
+	public static boolean gotImage = false;	
+
 	
 
 	GamePanel() {
@@ -27,7 +33,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		instuctionFont = new Font("Arial", Font.PLAIN, 35);
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
-
+		if (needImage) {
+		    loadImage ("space.png");
+		    System.out.println("working");
+		    
+		}
 	}
 
 	@Override
@@ -65,8 +75,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
+		if (gotImage) {
+			g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+		}
+		else { g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		}
 		rs.draw(g);
 	}
 
@@ -82,7 +96,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (currentState == MENU) {
-			System.out.println("action");
+			
 			updateMenuState();
 		} else if (currentState == GAME) {
 			updateGameState();
@@ -143,6 +157,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	void loadImage(String imageFile) {
+	    if (needImage) {
+	        try {
+	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	        needImage = false;
+	    }
 	}
 
 }
