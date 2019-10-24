@@ -82,6 +82,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		}
 		rs.draw(g);
+		
 	}
 
 	void drawEndState(Graphics g) {
@@ -145,6 +146,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if(rs.x < 450) {
 				rs.x = rs.x+10;
 			}
+			}
+		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			om.addProjectile(rs.getProjectile());
+			System.out.println("SPACE");
 		}
 
 	}

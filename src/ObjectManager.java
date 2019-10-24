@@ -45,8 +45,8 @@ public class ObjectManager implements ActionListener{
 				projectilees.get(i).isActive=false;
 			}
 		}
+	}
+	void draw() {
 		
-	
-	
-//
-	}}
+	}	
+}
