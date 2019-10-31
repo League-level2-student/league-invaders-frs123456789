@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-
+om.update();
 	}
 
 	void updateEndState() {
@@ -81,7 +81,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		else { g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		}
-		rs.draw(g);
+		om.draw(g);
+		
 		
 	}
 
@@ -119,10 +120,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
+				alienSpawn.stop();
 				currentState = MENU;
 			} else {
 				currentState++;
+				if(currentState == GAME) {
+					startGame();
+				}
 			}
+			
+			
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			System.out.println("UP");

@@ -25,6 +25,15 @@ public class ObjectManager implements ActionListener{
 		projectilees.add(projectilee);
 
 	}
+	void checkCollision(){
+		for(int i = 0; i < alienss.size(); i++) {
+			for(int j = 0; j < projectilees.size(); j++) {
+				if(rocket.collisionBox.intersects(alienss.get(i).collisionBox)) {
+				rocket.isActive = false;
+				alienss.get(i).isActive = false;
+				}}
+			}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -33,6 +42,7 @@ public class ObjectManager implements ActionListener{
 	}
 	
 	void update(){
+		rocket.update();
 		for(int i = 0; i < alienss.size(); i++) {
 			alienss.get(i).update();
 			if(alienss.get(i).y > LeagueInvaders.HEIGHT) {
@@ -46,7 +56,14 @@ public class ObjectManager implements ActionListener{
 			}
 		}
 	}
-	void draw() {
+	void draw(Graphics g) {
+		for(int i = 0; i < alienss.size(); i++) {
+			alienss.get(i).draw(g);
+		}
+		for(int i = 0; i < projectilees.size(); i++) {
+			projectilees.get(i).draw(g);
+		}
+		rocket.draw(g);
 		
-	}	
-}
+		
+}}
