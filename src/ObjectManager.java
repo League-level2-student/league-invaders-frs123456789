@@ -37,7 +37,7 @@ public class ObjectManager implements ActionListener {
 			for (int j = 0; j < projectilees.size(); j++) {
 				if (projectilees.get(j).collisionBox.intersects(alienss.get(i).collisionBox)) {
 					projectilees.get(j).isActive = false;
-					alienss.get(j).isActive = false;
+					alienss.get(i).isActive = false;
 					score = score +1;
 				}
 			}

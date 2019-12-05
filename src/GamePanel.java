@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (needImage) {
 		    loadImage ("space.png");
 		    System.out.println("working");
+	  
 		    
 		}
 	}
@@ -95,6 +96,7 @@ if(rs.isActive == false) {
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
 		g.drawString("GAME OVER :(", 15, 150);
+		g.drawString("Score: "+ om.getScore(),250, 300);
 	}
 
 	@Override
@@ -124,6 +126,8 @@ if(rs.isActive == false) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
 				alienSpawn.stop();
+				rs = new Rocketship(250, 700, 50, 50);
+				om = new ObjectManager(rs);
 				currentState = MENU;
 			} else {
 				currentState++;
