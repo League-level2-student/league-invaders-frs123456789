@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont;
 	Font instuctionFont;
 	int currentState = MENU;
-	Timer frameDraw;
+	Timer frameDraw; 
 	Rocketship rs = new Rocketship(250, 700, 50, 50);
 	Timer alienSpawn;
 	ObjectManager om = new ObjectManager(rs);
